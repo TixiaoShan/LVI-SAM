@@ -1,0 +1,11 @@
+<launch>
+
+	<arg name="project" default="lvi_sam"/>
+
+    <param name="robot_description" command="$(find xacro)/xacro $(find lvi_sam)/launch/include/config/robot.urdf.xacro --inorder" />
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="$(arg project)_robot_state_publisher" respawn="true">
+        <!-- <param name="tf_prefix" value="$(env ROS_HOSTNAME)"/> -->
+    </node>
+  
+</launch>
