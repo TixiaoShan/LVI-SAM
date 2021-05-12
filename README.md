@@ -88,6 +88,12 @@ rosbag play handheld.bag
 
 ---
 
+## TODO
+
+  - [ ] Update graph optimization using all three factors in imuPreintegration.cpp, simplify mapOptimization.cpp, increase system stability 
+
+---
+
 ## Paper 
 
 Thank you for citing our [paper](./doc/paper.pdf) if you use any of this code or datasets.
