@@ -1,3 +1,11 @@
+LVI-SAM超详细注释
+
+-by 计算机视觉life 旗下 [SLAM知识星球学习小组](https://mp.weixin.qq.com/s/Lzn7jUPRwpbMqe-5Ku9Ksg)
+
+参与人员（排名不分先后）：
+
+荆黎明（东北大学）、刘嘉林（复旦大学）、汪寿安（中国矿业大学）、万文俊（中科院计算所）、周新杰（哈工大）、乔生（吉林大学）
+
 # LVI-SAM
 
 This repository contains code for a lidar-visual-inertial odometry and mapping system, which combines the advantages of [LIO-SAM](https://github.com/TixiaoShan/LIO-SAM/tree/a246c960e3fca52b989abf888c8cf1fae25b7c25) and [Vins-Mono](https://github.com/HKUST-Aerial-Robotics/VINS-Mono) at a system level.
