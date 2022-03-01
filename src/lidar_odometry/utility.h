@@ -211,7 +211,10 @@ public:
 
         usleep(100);
     }
-
+    
+    /**
+     * imu原始测量数据转换到lidar系，加速度、角速度、RPY
+    */
     sensor_msgs::Imu imuConverter(const sensor_msgs::Imu& imu_in)
     {
         sensor_msgs::Imu imu_out = imu_in;
