@@ -10,11 +10,13 @@ using namespace Eigen;
 * @class IntegrationBase IMU pre-integration class
 * @Description 
 */
+// IMU预积分类
 class IntegrationBase
 {
   public:
 
     double dt;
+    // 相邻两个时刻的imu数据
     Eigen::Vector3d acc_0, gyr_0;
     Eigen::Vector3d acc_1, gyr_1;
 
@@ -36,7 +38,7 @@ class IntegrationBase
     std::vector<Eigen::Vector3d> gyr_buf;
 
     IntegrationBase() = delete;
-
+    // 预积分类的构造函数
     IntegrationBase(const Eigen::Vector3d &_acc_0, 
                     const Eigen::Vector3d &_gyr_0,
                     const Eigen::Vector3d &_linearized_ba, 
@@ -47,14 +49,16 @@ class IntegrationBase
           linearized_gyr{_gyr_0},
           linearized_ba{_linearized_ba}, 
           linearized_bg{_linearized_bg},
-          jacobian{Eigen::Matrix<double, 15, 15>::Identity()}, 
-          covariance{Eigen::Matrix<double, 15, 15>::Zero()},
+          jacobian{Eigen::Matrix<double, 15, 15>::Identity()},  // jacobian矩阵初始时为单位阵
+          covariance{Eigen::Matrix<double, 15, 15>::Zero()},    // covariance矩阵初始时为零矩阵
           sum_dt{0.0}, 
           delta_p{Eigen::Vector3d::Zero()}, 
           delta_q{Eigen::Quaterniond::Identity()}, 
           delta_v{Eigen::Vector3d::Zero()}
 
     {
+        // noise矩阵初始化为噪声项的对角协方差矩阵
+        // 下面的 ACC_N,GYR_N,ACC_W,GYR_W 为从yaml文件中读取的标定值
         noise = Eigen::Matrix<double, 18, 18>::Zero();
         noise.block<3, 3>(0, 0) =  (ACC_N * ACC_N) * Eigen::Matrix3d::Identity();
         noise.block<3, 3>(3, 3) =  (GYR_N * GYR_N) * Eigen::Matrix3d::Identity();
@@ -73,6 +77,7 @@ class IntegrationBase
     }
 
     // after optimization, repropagate pre-integration using the updated bias
+    // 优化过程中bias会进行更新，需要重新预积分
     void repropagate(const Eigen::Vector3d &_linearized_ba, const Eigen::Vector3d &_linearized_bg)
     {
         sum_dt = 0.0;
@@ -89,28 +94,21 @@ class IntegrationBase
             propagate(dt_buf[i], acc_buf[i], gyr_buf[i]);
     }
 
-    /**
-    * @brief   IMU预积分传播方程
-    * @Description  积分计算两个关键帧之间IMU测量的变化量： 
-    *               旋转delta_q 速度delta_v 位移delta_p
-    *               加速度的biaslinearized_ba 陀螺仪的Bias linearized_bg
-    *               同时维护更新预积分的Jacobian和Covariance,计算优化时必要的参数
-    * @param[in]   _dt 时间间隔
-    * @param[in]   _acc_1 线加速度
-    * @param[in]   _gyr_1 角速度
-    * @return  void
-    */
+    // imu预积分传播
     void propagate(double _dt, const Eigen::Vector3d &_acc_1, const Eigen::Vector3d &_gyr_1)
     {
         dt = _dt;
         acc_1 = _acc_1;
         gyr_1 = _gyr_1;
+
+        // PVQ及bias
         Vector3d result_delta_p;
         Quaterniond result_delta_q;
         Vector3d result_delta_v;
         Vector3d result_linearized_ba;
         Vector3d result_linearized_bg;
-
+        
+        // 采用中值法进行预积分
         midPointIntegration(_dt, acc_0, gyr_0, _acc_1, _gyr_1, delta_p, delta_q, delta_v,
                             linearized_ba, linearized_bg,
                             result_delta_p, result_delta_q, result_delta_v,
@@ -128,11 +126,7 @@ class IntegrationBase
      
     }
 
-    /**
-    * @brief   IMU预积分中采用中值积分递推Jacobian和Covariance
-    *          构造误差的线性化递推方程，得到Jacobian和Covariance递推公式-> Paper 式9、10、11
-    * @return  void
-    */
+    // 采用中值积分进行预积分
     void midPointIntegration(double _dt, 
                             const Eigen::Vector3d &_acc_0, const Eigen::Vector3d &_gyr_0,
                             const Eigen::Vector3d &_acc_1, const Eigen::Vector3d &_gyr_1,
@@ -142,6 +136,7 @@ class IntegrationBase
                             Eigen::Vector3d &result_linearized_ba, Eigen::Vector3d &result_linearized_bg, bool update_jacobian)
     {
         //ROS_INFO("midpoint integration");
+        // 1. 中值积分计算两帧之间PVQ的增量
         Vector3d un_acc_0 = delta_q * (_acc_0 - linearized_ba);
         Vector3d un_gyr = 0.5 * (_gyr_0 + _gyr_1) - linearized_bg;
         result_delta_q = delta_q * Quaterniond(1, un_gyr(0) * _dt / 2, un_gyr(1) * _dt / 2, un_gyr(2) * _dt / 2);
@@ -151,7 +146,7 @@ class IntegrationBase
         result_delta_v = delta_v + un_acc * _dt;
         result_linearized_ba = linearized_ba;
         result_linearized_bg = linearized_bg;         
-
+        //2. PVQ增量误差的jacobian和协方差矩阵的更新
         if(update_jacobian)
         {
             Vector3d w_x = 0.5 * (_gyr_0 + _gyr_1) - linearized_bg;

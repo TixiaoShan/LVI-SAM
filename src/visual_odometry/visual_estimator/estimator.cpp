@@ -79,6 +79,7 @@ void Estimator::clearState()
     failure_occur = 0;
 }
 
+// IMU预积分函数
 void Estimator::processIMU(double dt, const Vector3d &linear_acceleration, const Vector3d &angular_velocity)
 {
     if (!first_imu)
@@ -88,20 +89,24 @@ void Estimator::processIMU(double dt, const Vector3d &linear_acceleration, const
         gyr_0 = angular_velocity;
     }
 
+    // 构造滑窗指定位置的IntegrationBase类
     if (!pre_integrations[frame_count])
     {
         pre_integrations[frame_count] = new IntegrationBase{acc_0, gyr_0, Bas[frame_count], Bgs[frame_count]};
     }
     if (frame_count != 0)
     {
+        // 预积分
         pre_integrations[frame_count]->push_back(dt, linear_acceleration, angular_velocity);
 
         tmp_pre_integration->push_back(dt, linear_acceleration, angular_velocity);
 
+        // 保存imu数据
         dt_buf[frame_count].push_back(dt);
         linear_acceleration_buf[frame_count].push_back(linear_acceleration);
         angular_velocity_buf[frame_count].push_back(angular_velocity);
 
+        //中值积分计算PVQ
         int j = frame_count;         
         Vector3d un_acc_0 = Rs[j] * (acc_0 - Bas[j]) - g;
         Vector3d un_gyr = 0.5 * (gyr_0 + angular_velocity) - Bgs[j];

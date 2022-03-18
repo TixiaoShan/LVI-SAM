@@ -56,7 +56,7 @@ generate_messages(
 
 ######################
 ### Catkin
-######################
+######################GTSAM
 catkin_package(
     DEPENDS PCL GTSAM
 )
