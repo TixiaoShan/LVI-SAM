@@ -1,0 +1,87 @@
+The system is: Linux - sh: 0: getcwd() failed: No such file or directory
+5.10.76-linuxkit - sh: 0: getcwd() failed: No such file or directory
+x86_64
+Determining if the C compiler works passed with the following output:
+Change Dir: /home/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_1c227/fast"
+/usr/bin/make -f CMakeFiles/cmTC_1c227.dir/build.make CMakeFiles/cmTC_1c227.dir/build
+make[1]: Entering directory '/home/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_1c227.dir/testCCompiler.c.o
+/usr/bin/x86_64-linux-gnu-gcc-7    -o CMakeFiles/cmTC_1c227.dir/testCCompiler.c.o   -c /home/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_1c227
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1c227.dir/link.txt --verbose=1
+/usr/bin/x86_64-linux-gnu-gcc-7      CMakeFiles/cmTC_1c227.dir/testCCompiler.c.o  -o cmTC_1c227 
+make[1]: Leaving directory '/home/build/CMakeFiles/CMakeTmp'
+
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /home/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_33697/fast"
+/usr/bin/make -f CMakeFiles/cmTC_33697.dir/build.make CMakeFiles/cmTC_33697.dir/build
+make[1]: Entering directory '/home/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_33697.dir/CMakeCCompilerABI.c.o
+/usr/bin/x86_64-linux-gnu-gcc-7    -o CMakeFiles/cmTC_33697.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_33697
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_33697.dir/link.txt --verbose=1
+/usr/bin/x86_64-linux-gnu-gcc-7      CMakeFiles/cmTC_33697.dir/CMakeCCompilerABI.c.o  -o cmTC_33697 
+make[1]: Leaving directory '/home/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the CXX compiler works passed with the following output:
+Change Dir: /home/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_07274/fast"
+/usr/bin/make -f CMakeFiles/cmTC_07274.dir/build.make CMakeFiles/cmTC_07274.dir/build
+make[1]: Entering directory '/home/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_07274.dir/testCXXCompiler.cxx.o
+/usr/bin/x86_64-linux-gnu-g++-7     -o CMakeFiles/cmTC_07274.dir/testCXXCompiler.cxx.o -c /home/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_07274
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_07274.dir/link.txt --verbose=1
+/usr/bin/x86_64-linux-gnu-g++-7       CMakeFiles/cmTC_07274.dir/testCXXCompiler.cxx.o  -o cmTC_07274 
+make[1]: Leaving directory '/home/build/CMakeFiles/CMakeTmp'
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /home/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_d7efd/fast"
+/usr/bin/make -f CMakeFiles/cmTC_d7efd.dir/build.make CMakeFiles/cmTC_d7efd.dir/build
+make[1]: Entering directory '/home/build/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_d7efd.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/x86_64-linux-gnu-g++-7     -o CMakeFiles/cmTC_d7efd.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_d7efd
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d7efd.dir/link.txt --verbose=1
+/usr/bin/x86_64-linux-gnu-g++-7       CMakeFiles/cmTC_d7efd.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_d7efd 
+make[1]: Leaving directory '/home/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the include file pthread.h exists passed with the following output:
+Change Dir: /home/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_e1c98/fast"
+/usr/bin/make -f CMakeFiles/cmTC_e1c98.dir/build.make CMakeFiles/cmTC_e1c98.dir/build
+make[1]: Entering directory '/home/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_e1c98.dir/CheckIncludeFile.c.o
+/usr/bin/x86_64-linux-gnu-gcc-7    -o CMakeFiles/cmTC_e1c98.dir/CheckIncludeFile.c.o   -c /home/build/CMakeFiles/CMakeTmp/CheckIncludeFile.c
+Linking C executable cmTC_e1c98
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e1c98.dir/link.txt --verbose=1
+/usr/bin/x86_64-linux-gnu-gcc-7      CMakeFiles/cmTC_e1c98.dir/CheckIncludeFile.c.o  -o cmTC_e1c98 
+make[1]: Leaving directory '/home/build/CMakeFiles/CMakeTmp'
+
+
+Determining if the function pthread_create exists in the pthread passed with the following output:
+Change Dir: /home/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_9e92b/fast"
+/usr/bin/make -f CMakeFiles/cmTC_9e92b.dir/build.make CMakeFiles/cmTC_9e92b.dir/build
+make[1]: Entering directory '/home/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_9e92b.dir/CheckFunctionExists.c.o
+/usr/bin/x86_64-linux-gnu-gcc-7   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_9e92b.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_9e92b
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9e92b.dir/link.txt --verbose=1
+/usr/bin/x86_64-linux-gnu-gcc-7  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_9e92b.dir/CheckFunctionExists.c.o  -o cmTC_9e92b -lpthread 
+make[1]: Leaving directory '/home/build/CMakeFiles/CMakeTmp'
+
+
