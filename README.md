@@ -88,6 +88,13 @@ rosbag play handheld.bag
 
 ---
 
+## Related Packages
+
+  - [LVI_SAM_fixed by epicjung](https://github.com/epicjung/LVI_SAM_fixed)
+  - [LVI-SAM-modified by skyrim835](https://github.com/skyrim835/LVI-SAM-modified)
+
+---
+
 ## TODO
 
   - [ ] Update graph optimization using all three factors in imuPreintegration.cpp, simplify mapOptimization.cpp, increase system stability 
