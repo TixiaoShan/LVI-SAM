@@ -110,7 +110,7 @@ Thank you for citing our [paper](./doc/paper.pdf) if you use any of this code or
   title={LVI-SAM: Tightly-coupled Lidar-Visual-Inertial Odometry via Smoothing and Mapping},
   author={Shan, Tixiao and Englot, Brendan and Ratti, Carlo and Rus Daniela},
   booktitle={IEEE International Conference on Robotics and Automation (ICRA)},
-  pages={to-be-added},
+  pages={5692-5698},
   year={2021},
   organization={IEEE}
 }
