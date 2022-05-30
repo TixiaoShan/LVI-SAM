@@ -9,9 +9,14 @@ void LoopDetector::loadVocabulary(std::string voc_path)
     db.setVocabulary(*voc, false, 0);
 }
 
+//处理当前关键帧
+//1.如果不回环，addKeyFrameIntoVoc,将当前帧加入词典
+//2.如果回环，detectloop,检测回环并获得回环候选帧索引;之后根据分数检查回环可靠性，如果成功，pub_match_msg
+//3.添加关键帧到keyframelist
 void LoopDetector::addKeyFrame(KeyFrame* cur_kf, bool flag_detect_loop)
 {
 	int loop_index = -1;
+    //一、回环检测，返回回环候选帧的索引，若不回环将当前帧加入词典
     if (flag_detect_loop)
     {
         loop_index = detectLoop(cur_kf, cur_kf->index);
@@ -21,7 +26,7 @@ void LoopDetector::addKeyFrame(KeyFrame* cur_kf, bool flag_detect_loop)
         addKeyFrameIntoVoc(cur_kf);
     }
 
-    // check loop if valid using ransan and pnp
+    // 二、使用ransan和pnp检查回环 check loop if valid using ransan and pnp
 	if (loop_index != -1)
 	{
         KeyFrame* old_kf = getKeyFrame(loop_index);
