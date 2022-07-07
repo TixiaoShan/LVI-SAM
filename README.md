@@ -28,6 +28,11 @@ This repository contains code for a lidar-visual-inertial odometry and mapping s
   sudo make install -j4
   ```
 
+### Getting start with Docker  
+
+When you use Docker, you could solve the dependency at once.  
+For more information, you can check [docker_start.md](./docker/docker_start.md).    
+
 ---
 
 ## Compile
