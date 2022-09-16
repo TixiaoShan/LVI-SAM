@@ -356,6 +356,13 @@ public:
             publishGlobalMap();
         }
 
+        //////////////////////// Save trajectory ///////////////////////////
+        if(saveTrajectory == true){
+            SaveWholeTrajectory(saveTrajectoryResult);
+            std::cout << "save trajectory !!" << std::endl;
+        }
+        
+        //////////////////////// Save Map ///////////////////////////
         if (savePCD == false)
             return;
 
@@ -1658,6 +1665,26 @@ public:
             globalPath.header.stamp = timeLaserInfoStamp;
             globalPath.header.frame_id = "odom";
             pubPath.publish(globalPath);
+        }
+    }
+
+    void SaveWholeTrajectory(const std::string &traj_file) {
+
+        std::string filename(traj_file);
+        std::fstream output_fstream;
+
+        output_fstream.open(filename, std::ios_base::out);
+
+        if (!output_fstream.is_open()) {
+            std::cerr << "Failed to open " << filename << '\n';
+        } 
+        else {
+            output_fstream << "#timestamp x y z q_x q_y q_z q_w" << std::endl;
+            for (const auto &p : globalPath.poses) {
+            output_fstream << std::fixed << std::setprecision(6) << p.header.stamp.toSec() << " " << std::setprecision(15)
+                << p.pose.position.x << " " << p.pose.position.y << " " << p.pose.position.z << " " << p.pose.orientation.x
+                << " " << p.pose.orientation.y << " " << p.pose.orientation.z << " " << p.pose.orientation.w << std::endl;
+            }
         }
     }
 };
