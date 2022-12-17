@@ -67,6 +67,8 @@ https://drive.google.com/drive/folders/1q2NZnsgNmezFemoxhHnrDnp1JV_bqrgV?usp=sha
     <img src="./doc/handheld-earth.png" alt="drawing" width="328"/>
 </p>
 
+**New:** more datasets are available at [LVI-SAM-Easyused](https://github.com/Cc19245/LVI-SAM-Easyused).
+
 ---
 
 ## Run the package
