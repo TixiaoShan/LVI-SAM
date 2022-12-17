@@ -93,6 +93,7 @@ rosbag play handheld.bag
 
   - [LVI_SAM_fixed by epicjung](https://github.com/epicjung/LVI_SAM_fixed)
   - [LVI-SAM-modified by skyrim835](https://github.com/skyrim835/LVI-SAM-modified)
+  - [LVI-SAM-Easyused by Cc19245](https://github.com/Cc19245/LVI-SAM-Easyused)
 
 ---
 
