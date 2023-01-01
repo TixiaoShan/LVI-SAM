@@ -84,6 +84,10 @@ public:
     bool savePCD;
     string savePCDDirectory;
 
+    // Save trajectory
+    bool saveTrajectory;
+    string saveTrajectoryResult;
+
     // Velodyne Sensor Configuration: Velodyne
     int N_SCAN;
     int Horizon_SCAN;
@@ -159,6 +163,9 @@ public:
 
         nh.param<bool>(PROJECT_NAME + "/savePCD", savePCD, false);
         nh.param<std::string>(PROJECT_NAME + "/savePCDDirectory", savePCDDirectory, "/tmp/loam/");
+
+        nh.param<bool>(PROJECT_NAME + "/saveTrajectory", saveTrajectory, false);
+        nh.param<std::string>(PROJECT_NAME + "/saveTrajectoryResult", saveTrajectoryResult, "/tmp/loam/traj.txt");
 
         nh.param<int>(PROJECT_NAME + "/N_SCAN", N_SCAN, 16);
         nh.param<int>(PROJECT_NAME + "/Horizon_SCAN", Horizon_SCAN, 1800);

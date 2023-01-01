@@ -11,6 +11,9 @@ lvi_sam:
   useImuHeadingInitialization: true          # if using GPS data, set to "true"
   
   # Export settings
+  saveTrajectory: true
+  saveTrajectoryResult : "/home/catkin_ws/src/result/traj.txt"
+
   savePCD: false                              # https://github.com/TixiaoShan/LIO-SAM/issues/3
   savePCDDirectory: "/Downloads/LOAM/"        # in your home folder, starts and ends with "/". Warning: the code deletes "LOAM" folder then recreates it. See "mapOptimization" for implementation
 
